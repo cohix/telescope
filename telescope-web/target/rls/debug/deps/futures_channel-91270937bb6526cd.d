@@ -1,0 +1,10 @@
+/Users/cohix-16/Workspaces/suborbital/telescope/telescope-web/target/rls/debug/deps/futures_channel-91270937bb6526cd.rmeta: /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/lib.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/lock.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/mod.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/queue.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/sink_impl.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/oneshot.rs
+
+/Users/cohix-16/Workspaces/suborbital/telescope/telescope-web/target/rls/debug/deps/futures_channel-91270937bb6526cd.d: /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/lib.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/lock.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/mod.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/queue.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/sink_impl.rs /Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/oneshot.rs
+
+/Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/lib.rs:
+/Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/lock.rs:
+/Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/mod.rs:
+/Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/queue.rs:
+/Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/mpsc/sink_impl.rs:
+/Users/cohix-16/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-channel-0.3.13/src/oneshot.rs:
