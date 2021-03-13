@@ -10,6 +10,9 @@ handlers:
     resource: /*file
     method: GET
     steps:
+      
       - fn: serve-file
         onErr:
           any: return
+
+    response: serve-file
