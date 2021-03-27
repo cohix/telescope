@@ -11,7 +11,7 @@ impl Runnable for ServeFile {
             filename = format!("{}index.html", filename)
         }
 
-        let file = match file::get_static(filename.as_str()) {
+        let file = match file::get_static(format!("app{}", filename).as_str()) {
             Some(f) => f,
             None => return Err(RunErr::new(404, "not found"))
         };

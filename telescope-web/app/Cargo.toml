@@ -1,0 +1,29 @@
+[package]
+name = "telescope-web"
+version = "0.1.0"
+edition = "2018"
+description = "Fullstack WebAssembly application (Atmo & Yew) for viewing GitHub repo stats"
+readme = "README.md"
+repository = "https://github.com/cohix/telescope"
+license = "Apache-2.0"
+keywords = ["yew", "trunk", "atmo"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+yew = "0.17.3"
+wasm-bindgen = { version = "0.2.72", features = ["serde-serialize"]  }
+js-sys = "0.3.49"
+wasm-bindgen-futures = "0.4.22"
+futures = '*'
+reqwest = { version = "*", features = [] }
+
+[dependencies.web-sys]
+version = "0.3.4"
+features = [
+  'Headers',
+  'Request',
+  'RequestInit',
+  'RequestMode',
+  'Response',
+  'Window',
+]

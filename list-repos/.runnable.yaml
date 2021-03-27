@@ -1,0 +1,4 @@
+name: list-repos
+namespace: default
+lang: rust
+apiVersion: 0.9.1
