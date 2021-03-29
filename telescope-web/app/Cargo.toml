@@ -12,18 +12,10 @@ keywords = ["yew", "trunk", "atmo"]
 [dependencies]
 yew = "0.17.3"
 wasm-bindgen = { version = "0.2.72", features = ["serde-serialize"]  }
-js-sys = "0.3.49"
 wasm-bindgen-futures = "0.4.22"
 futures = '*'
 reqwest = { version = "*", features = [] }
-
-[dependencies.web-sys]
-version = "0.3.4"
-features = [
-  'Headers',
-  'Request',
-  'RequestInit',
-  'RequestMode',
-  'Response',
-  'Window',
-]
+web-sys = "*"
+anyhow = "*"
+serde = "*"
+serde_derive = "*"

@@ -1,32 +1,52 @@
+#![recursion_limit = "256"]
+
+use anyhow::{Error};
 use yew::prelude::*;
-use wasm_bindgen::prelude::*;
-use web_sys::console;
-use wasm_bindgen_futures::spawn_local;
+use yew::services::fetch::{FetchTask};
 
 mod api;
 
+pub enum Msg {
+    RepoList(Result<Vec<api::Repo>, Error>) 
+}
+
 #[derive(Debug)]
-pub struct Model;
-impl Component for Model {
-    type Message = ();
+pub struct Homepage {
+    link: ComponentLink<Self>,
+    repos: Vec<api::Repo>,
+    repos_cb: Callback<Result<Vec<api::Repo>, Error>>,
+    repos_task: Option<FetchTask>
+}
+
+impl Component for Homepage {
+    type Message = Msg;
     type Properties = ();
 
     fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        
-        spawn_local(async {
-            let repos: String = match api::get_repos().await {
-                Ok(val) => val,
-                Err(e) => format!("{}", e)
-            };
+        let cb = _link.callback(Msg::RepoList);
 
-            console::log_1(&JsValue::from(repos));
-        });
+        Homepage {
+            link: _link,
+            repos: Vec::new(),
+            repos_cb: cb,
+            repos_task: None,
+        }
+    }
 
-        Self
+    fn rendered(&mut self, first_render: bool) {
+        if first_render {
+            self.repos_task = Some(api::get_repos(self.repos_cb.clone()));
+        }
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        unimplemented!()
+        match _msg {
+            Msg::RepoList(Ok(repos)) => {
+                self.repos = repos;
+            },
+            Msg::RepoList(Err(_)) => {}
+        }
+        true
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
@@ -36,12 +56,24 @@ impl Component for Model {
     fn view(&self) -> Html {
         html! {
             <main>
-                <h1>{ "Yew ❤️ Atmo!" }</h1>
+                <h1 style="text-align:center"> {"Telescope 🔭"} </h1>
+                <a href="https://github.com/suborbital" style="text-align:left;color:white">{"Suborbital"}</a>
+                <ul style="text-align:left">
+                    { 
+                        self.repos.iter().map(|r| {
+                            html! {
+                                <li>
+                                    {format!("{}: {}", r.name.clone(), r.stargazers_count.clone())}
+                                </li>
+                            }
+                        }).collect::<Html>() 
+                    }
+                </ul>
             </main>
         }
     }
 }
 
 fn main() {
-    yew::start_app::<Model>();
+    yew::start_app::<Homepage>();
 }

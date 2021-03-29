@@ -1,16 +1,33 @@
-use reqwest;
+use anyhow::{anyhow, Error};
+// use reqwest;
+use yew::format::{Json, Nothing};
+use yew::services::fetch::{FetchService, FetchTask, Request, Response};
+use serde_derive::Deserialize;
+use yew::prelude::*;
 
-pub async fn get_repos() -> Result<String, reqwest::Error> {
-	get("/api/v1/repos").await
+#[derive(Deserialize, Debug)]
+pub struct Repo {
+    pub name: String,
+	pub stargazers_count: i32,
 }
 
-async fn get(url: &str) -> Result<String, reqwest::Error> {
-	let full_url = format!("http://localhost:8080{}", url);
-
-	let body: String = match reqwest::get(full_url).await {
-		Ok(resp) => resp.text().await.unwrap(),
-		Err(e) => return Err(e)
+pub fn get_repos(callback: Callback<Result<Vec<Repo>, Error>>) -> FetchTask {
+	let handler = move |response: Response<Json<Result<Vec<Repo>, Error>>>| {
+		let (meta, Json(data)) = response.into_parts();
+		if meta.status.is_success() {
+			callback.emit(data)
+		} else {
+			callback.emit(Err(anyhow!(
+				"{}: error getting repos",
+				meta.status
+			)))
+		}
 	};
 
-	Ok(body)
+	let request = Request::get(url("/api/v1/repos").as_str()).body(Nothing).unwrap();
+	FetchService::fetch(request, handler.into()).unwrap()
+}
+
+fn url(path: &str) -> String {
+	format!("http://localhost:8080/{}", path)
 }

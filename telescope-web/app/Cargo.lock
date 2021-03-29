@@ -861,9 +861,11 @@ dependencies = [
 name = "telescope-web"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "futures",
- "js-sys",
  "reqwest",
+ "serde",
+ "serde_derive",
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",

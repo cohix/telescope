@@ -13,8 +13,6 @@ handlers:
       - fn: serve-file
         onErr:
           any: return
-
-    response: serve-file
   
   - type: request
     resource: /api/v1/repos
