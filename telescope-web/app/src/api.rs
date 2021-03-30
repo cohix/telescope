@@ -2,17 +2,11 @@ use anyhow::{anyhow, Error};
 // use reqwest;
 use yew::format::{Json, Nothing};
 use yew::services::fetch::{FetchService, FetchTask, Request, Response};
-use serde_derive::Deserialize;
 use yew::prelude::*;
+use model;
 
-#[derive(Deserialize, Debug)]
-pub struct Repo {
-    pub name: String,
-	pub stargazers_count: i32,
-}
-
-pub fn get_repos(callback: Callback<Result<Vec<Repo>, Error>>) -> FetchTask {
-	let handler = move |response: Response<Json<Result<Vec<Repo>, Error>>>| {
+pub fn get_repos(callback: Callback<Result<Vec<model::Repo>, Error>>) -> FetchTask {
+	let handler = move |response: Response<Json<Result<Vec<model::Repo>, Error>>>| {
 		let (meta, Json(data)) = response.into_parts();
 		if meta.status.is_success() {
 			callback.emit(data)
@@ -29,5 +23,5 @@ pub fn get_repos(callback: Callback<Result<Vec<Repo>, Error>>) -> FetchTask {
 }
 
 fn url(path: &str) -> String {
-	format!("http://localhost:8080/{}", path)
+	format!("http://localhost:8080{}", path)
 }

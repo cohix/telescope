@@ -1,5 +1,7 @@
 use suborbital::runnable::*;
-use suborbital::{file, http, util};
+use suborbital::{cache, file, http, log, resp, util};
+use serde_json;
+use model;
 
 struct ListRepos{}
 
@@ -17,7 +19,23 @@ impl Runnable for ListRepos {
             Err(_) => return Err(RunErr::new(500, "failed to fetch repos"))
         };
 
-        Ok(repo_resp)
+        let repos: Vec<model::Repo> = serde_json::from_slice(repo_resp.as_slice()).map_err(|e| {
+            log::error(format!("{}", e).as_str());
+            RunErr::new(500, "failed to parse JSON")
+        })?;
+
+        // cache each repo
+        repos.iter().for_each(|r| {
+            cache::set(r.name.as_str(), serde_json::to_vec(r).unwrap_or_default(), 5*60);
+        });
+
+        let json = serde_json::to_vec(&repos).map_err(|e| {
+            log::error(format!("{}", e).as_str());
+            RunErr::new(500, format!("{}", e).as_str())
+        })?;
+        
+        resp::content_type("application/json");
+        Ok(json)
     }
 }
 

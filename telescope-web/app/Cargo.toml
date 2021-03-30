@@ -19,3 +19,4 @@ web-sys = "*"
 anyhow = "*"
 serde = "*"
 serde_derive = "*"
+model = { path = "../../model" }

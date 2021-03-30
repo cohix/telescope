@@ -19,3 +19,23 @@ handlers:
     method: GET
     steps:
       - fn: list-repos
+
+  - type: request
+    resource: /api/v1/repo/:repo
+    method: GET
+    steps:
+      - fn: get-repo
+  
+  - type: request
+    resource: /api/v1/report
+    method: POST
+    steps:
+      - fn: list-repos
+        as: repos
+
+      - forEach:
+          in: repos
+          fn: send-report
+          as: _
+
+    response: repos

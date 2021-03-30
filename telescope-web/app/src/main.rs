@@ -7,14 +7,14 @@ use yew::services::fetch::{FetchTask};
 mod api;
 
 pub enum Msg {
-    RepoList(Result<Vec<api::Repo>, Error>) 
+    RepoList(Result<Vec<model::Repo>, Error>) 
 }
 
 #[derive(Debug)]
 pub struct Homepage {
     link: ComponentLink<Self>,
-    repos: Vec<api::Repo>,
-    repos_cb: Callback<Result<Vec<api::Repo>, Error>>,
+    repos: Vec<model::Repo>,
+    repos_cb: Callback<Result<Vec<model::Repo>, Error>>,
     repos_task: Option<FetchTask>
 }
 

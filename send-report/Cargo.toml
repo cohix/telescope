@@ -1,5 +1,5 @@
 [package]
-name = "list-repos"
+name = "send-report"
 version = "0.1.0"
 authors = ["Suborbital Runnable <info@suborbital.dev>"]
 edition = "2018"
@@ -11,7 +11,6 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 suborbital = '0.9.1'
+serde = { version = "1.0", features = ["derive"] }
+serde_json = '*'
 model = { path = "../model" }
-serde = "*"
-serde_derive = "*"
-serde_json = "*"

@@ -1,5 +1,5 @@
 [package]
-name = "list-repos"
+name = "get-repo"
 version = "0.1.0"
 authors = ["Suborbital Runnable <info@suborbital.dev>"]
 edition = "2018"
@@ -13,5 +13,4 @@ crate-type = ["cdylib", "rlib"]
 suborbital = '0.9.1'
 model = { path = "../model" }
 serde = "*"
-serde_derive = "*"
 serde_json = "*"
