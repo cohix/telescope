@@ -22,6 +22,6 @@ Next, create a `static` directory in this repo and add 3 things inside:
 
 You can then run `make app` to build the frontend and backend
 
-Finally, run `subo dev` to start an Atmo development server and open https://localhost:8080/app to see it in action!
+Finally, run `subo dev` to start an Atmo development server and open http://localhost:8080/app to see it in action!
 
 You can use an HTTP client to interact with the other endpoints.
